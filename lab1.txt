@@ -1,0 +1,54 @@
+# Define the product list
+products = [
+    {'name': 'Techlife Ear buds', 'price': 2500},
+    {'name': 'Realme 7', 'price': 36000},
+    {'name': 'Acer Swift laptop', 'price': 90000},
+    {'name': 'Realme phone Cover', 'price': 400},
+    {'name': 'Realme charger', 'price': 200}
+]
+
+# Define an empty cart
+cart = []
+
+# Loop to display the product list and get user input
+while True:
+    # Display the product list
+    print("\nProduct List:")
+    for i, product in enumerate(products):
+        print(f"{i + 1}. {product['name']} - Rs.{product['price']}")
+    print("Enter the number of the product you want to add to your cart (or enter '0' to exit):")
+    
+    # Get user input
+    selection = input()
+    
+    # Exit the loop if the user enters 0
+    if selection == '0':
+        break
+    
+    # Try to convert the user input to an integer
+    try:
+        selection = int(selection)
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        continue
+    
+    # Check if the selection is valid
+    if selection < 1 or selection > len(products):
+        print("Invalid selection. Please enter a number between 1 and", len(products))
+        continue
+    
+    # Add the selected product to the cart
+    product = products[selection - 1]
+    cart.append(product)
+    print(f"{product['name']} added to cart.")
+    
+# Display the contents of the cart
+if len(cart) == 0:
+    print("Your cart is empty.")
+else:
+    print("\nCart:")
+    total = 0
+    for product in cart:
+        print(f"{product['name']} - Rs.{product['price']}")
+        total += product['price']
+    print("Total: Rs.",total)
